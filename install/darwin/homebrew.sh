@@ -9,4 +9,4 @@ NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Ho
 
 # Install packages
 eval "$(/opt/homebrew/bin/brew shellenv)"
-brew bundle --file="$DIR/.Brewfile"
+brew bundle --file="$DIR/Brewfile"

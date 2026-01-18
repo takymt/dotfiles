@@ -23,12 +23,3 @@ customCommands:
 gui:
   language: 'ja'
   showIcons: true
-
-# log customize
-git:
-  branchLogCmd: "git log --graph --color=always --pretty='%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' {{branchName}} --"
-  pagers:
-    - colorArg: always
-      pager: delta --dark --paging=never
-  allBranchesLogCmds:
-    - git log --graph --color=always --pretty='%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --all

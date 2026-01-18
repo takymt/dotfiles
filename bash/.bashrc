@@ -28,6 +28,7 @@ alias la='ls -A'
 # shared
 export XDG_CONFIG_HOME=${HOME}/.config
 export PATH="$HOME/.local/bin:$PATH"
+export PATH="/opt/homebrew/bin:$PATH"
 
 # go
 export GOROOT="$HOME/.local/go"
