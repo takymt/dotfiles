@@ -1,0 +1,129 @@
+function find_git_repo_local() {
+  local src=$(ghq list | fzf --preview "ls -laTp $(ghq root)/{} | tail -n+4 | awk '{print \$9\"/\"\$6\"/\"\$7 \" \" \$10}'")
+  if [ -n "$src" ]; then
+    cd "$(ghq root)/$src"
+  fi
+}
+
+function checkout_pr_branch() {
+  gh pr list
+
+  read -rp "Enter PR number to check out: " pr_number
+  [ -z "$pr_number" ] && {
+    echo "PR number is required" >&2
+    return 1
+  }
+
+  gh pr checkout "$pr_number"
+}
+
+function view_pr_diff() {
+  gh pr list
+
+  read -rp "Enter PR number to view diff: " pr_number
+  [ -z "$pr_number" ] && {
+    echo "PR number is required" >&2
+    return 1
+  }
+
+  gh pr diff "$pr_number"
+}
+
+function init_github_repo() {
+  read -rp "Repository name: " name
+  read -rp "Description: " description
+
+  if [ -z "$name" ]; then
+    echo "Repository name is required" >&2
+    return 1
+  fi
+
+  local cwd=$(pwd)
+
+  mkdir -p "$name"
+  cd "$name" || return 1
+
+  git init
+  git branch -m main
+
+  echo "# $name" >README.md
+  git add README.md
+  git commit -m "Initial commit"
+
+  gh repo create "$name" \
+    --description "$description" \
+    --source=. \
+    --remote=origin \
+    --push
+
+  cd "$cwd" || return 1
+}
+
+function generate_gitignore() {
+  local input_file="${1:-.gitignore}"
+
+  local selected
+  selected=$(gibo list | fzf --multi --preview "gibo dump {}") || return 1
+
+  [[ -z "$selected" ]] && return 1
+
+  while IFS= read -r template; do
+    if [[ -s "$input_file" ]]; then
+      printf '\n' >>"$input_file"
+    fi
+    gibo dump "$template" >>"$input_file"
+  done <<<"$selected"
+}
+
+function fork_repo() {
+  if [[ -z "$1" ]]; then
+    echo "Usage: ghfork <github-url>" >&2
+    return 1
+  fi
+
+  local upstream_url="$1"
+
+  local fork_url
+  fork_url=$(gh repo fork "$upstream_url" --clone=false 2>&1 | grep -o 'https://github.com/[^[:space:]]*' | head -1)
+
+  if [[ -z "$fork_url" ]]; then
+    echo "Failed to fork repository" >&2
+    return 1
+  fi
+
+  ghq clone "$fork_url"
+
+  local repo_path
+  repo_path=$(ghq list -p | grep -E "$(basename "$fork_url" .git)$" | head -1)
+
+  if [[ -n "$repo_path" ]]; then
+    git -C "$repo_path" remote add upstream "$upstream_url"
+    echo "Cloned to: $repo_path"
+    echo "origin: $fork_url"
+    echo "upstream: $upstream_url"
+  fi
+}
+
+# function aliases
+alias g="find_git_repo_local"
+alias prco="checkout_pr_branch"
+alias prdiff="view_pr_diff"
+alias ghinit="init_github_repo"
+alias ghfork="fork_repo"
+alias genignore="generate_gitignore"
+
+# git command aliases
+alias gs="git status"
+alias gl="git log"
+alias glo="git log --oneline"
+alias gco="git checkout"
+alias gc="git commit"
+alias ga="git add"
+alias gaa="git add -A"
+alias gss="git stash save -u"
+alias gp="git push"
+alias gpl="git pull"
+alias gm="git merge"
+alias gsp="git stash pop"
+alias gb="git branch"
+alias grt='cd $(git rev-parse --show-toplevel)'

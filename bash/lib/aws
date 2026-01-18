@@ -1,0 +1,13 @@
+function login_aws() {
+  local selected_profile
+  selected_profile=$(aws-vault list | tail -n +3 | fzf --prompt "Select AWS Profile: " | awk '{print $1}')
+
+  if [[ -z "$selected_profile" ]]; then
+    echo "No profile selected" >&2
+    return 1
+  fi
+
+  aws-vault login "$selected_profile"
+}
+
+alias awsin="login_aws"
