@@ -29,7 +29,7 @@ log_error() { echo "  ${_C_RED}✗${_C_RESET} $1"; }
 log_info() { echo "  ${_C_GRAY}$1${_C_RESET}"; }
 
 confirm() {
-    log_section "dotfiles installer"
+    log_section "takuto-yamamoto/dotfiles installer"
     echo "This script will:"
     log_info "- overwrite shell config files using symlinks"
     log_info "- overwrite configs under ~/.config"
