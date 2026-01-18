@@ -22,11 +22,11 @@ log_section() {
     echo "${_C_BOLD}${_C_CYAN}▶ $1${_C_RESET}"
     echo "${_C_GRAY}──────────────────────────────────────────${_C_RESET}"
 }
-log_step()    { echo "  ${_C_CYAN}→${_C_RESET} $1"; }
+log_step() { echo "  ${_C_CYAN}→${_C_RESET} $1"; }
 log_success() { echo "  ${_C_GREEN}✓${_C_RESET} $1"; }
-log_warn()    { echo "  ${_C_YELLOW}⚠${_C_RESET} $1"; }
-log_error()   { echo "  ${_C_RED}✗${_C_RESET} $1"; }
-log_info()    { echo "  ${_C_GRAY}$1${_C_RESET}"; }
+log_warn() { echo "  ${_C_YELLOW}⚠${_C_RESET} $1"; }
+log_error() { echo "  ${_C_RED}✗${_C_RESET} $1"; }
+log_info() { echo "  ${_C_GRAY}$1${_C_RESET}"; }
 
 confirm() {
     log_section "dotfiles installer"
