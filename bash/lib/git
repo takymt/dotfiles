@@ -126,4 +126,7 @@ alias gpl="git pull"
 alias gm="git merge"
 alias gsp="git stash pop"
 alias gb="git branch"
-alias grt='cd $(git rev-parse --show-toplevel)'
+alias grt="cd $(git rev-parse --show-toplevel)"
+
+# library aliases
+alias lg="lazygit"

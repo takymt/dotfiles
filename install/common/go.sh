@@ -10,8 +10,6 @@ ARCH=$(uname -m)
 TARBALL="go${VERSION}.${OS}-${ARCH}.tar.gz"
 DOWNLOAD_URL="https://go.dev/dl/${TARBALL}"
 
-echo "Installing Go ${VERSION} (${OS}-${ARCH})..."
-
 TMPDIR=$(mktemp -d)
 trap 'rm -rf "$TMPDIR"' EXIT
 
