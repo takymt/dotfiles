@@ -43,7 +43,7 @@ setup_dotfiles() {
     log_section "Setting up dotfiles"
     if [ ! -d "$DOTFILES_DIR" ]; then
         log_step "Cloning dotfiles"
-        if git clone "$REPO_URL" "$DOTFILES_DIR" >/dev/null 2>&1; then
+        if git clone "$REPO_URL" "$DOTFILES_DIR" >/dev/null; then
             log_success "Dotfiles cloned"
         else
             log_error "Failed to clone dotfiles"
@@ -51,7 +51,7 @@ setup_dotfiles() {
         fi
     elif [ -d "$DOTFILES_DIR/.git" ]; then
         log_step "Updating existing dotfiles"
-        if git -C "$DOTFILES_DIR" pull --ff-only >/dev/null 2>&1; then
+        if git -C "$DOTFILES_DIR" pull --ff-only >/dev/null; then
             log_success "Dotfiles updated"
         else
             log_warn "Local and remote have diverged"
@@ -94,7 +94,7 @@ install_packages() {
             [ -f "$script" ] || continue
             script_name="$(basename "$script")"
             log_step "$script_name"
-            if bash "$script" >/dev/null 2>&1; then
+            if bash "$script" >/dev/null; then
                 log_success "$script_name"
             else
                 log_error "$script_name failed"
