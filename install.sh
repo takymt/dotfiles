@@ -89,7 +89,7 @@ link_configs() {
     log_step "Linking non-XDG config"
     ln -sfn "$DOTFILES_DIR/.config/czg/cz.config.mjs" "$HOME/cz.config.mjs"
 
-    # TODO: migrate current vscode settings.json
+    # TODO: migrate current vscode/iTerm2 settings
     # TODO: support non-macOS platforms
     # ln -sfn "$DOTFILES_DIR/.config/vscode/settings.json" "$HOME/Library/Application Support/Code/User/settings.json"
 
