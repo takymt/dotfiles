@@ -36,7 +36,15 @@ confirm() {
     log_info "- install packages (may use sudo and network)"
     echo
     read -rp "Proceed? [y/N]: " ans
-    [[ "$ans" =~ ^[Yy]$ ]]
+    [[ "$ans" =~ ^[Yy]$ ]] || return 1
+
+    # keep alive in background
+    sudo -v
+    while true; do
+        sudo -n true
+        sleep 50
+        kill -0 "$$" || exit
+    done 2>/dev/null &
 }
 
 setup_dotfiles() {
@@ -94,10 +102,12 @@ install_packages() {
             [ -f "$script" ] || continue
             script_name="$(basename "$script")"
             log_step "$script_name"
-            if bash "$script" >/dev/null; then
+            local output
+            if output=$(bash "$script" 2>&1); then
                 log_success "$script_name"
             else
                 log_error "$script_name failed"
+                log_info "$output"
             fi
         done
     done

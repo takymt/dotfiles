@@ -21,6 +21,11 @@ HISTFILESIZE=20000
 HISTCONTROL=ignoreboth # ignore duplicates and commands starting with space
 shopt -s checkwinsize  # update COLUMNS and LINES after terminal resize
 
+# bash extensions
+[[ -r "/opt/homebrew/etc/profile.d/bash_completion.sh" ]] && . "/opt/homebrew/etc/profile.d/bash_completion.sh"
+source "/opt/homebrew/opt/fzf/shell/completion.bash"
+source "/opt/homebrew/opt/fzf/shell/key-bindings.bash"
+
 # aliases
 alias ll='ls -alF'
 alias la='ls -A'

@@ -1,7 +1,21 @@
-function find_git_repo_local() {
+function find_repo() {
   local src=$(ghq list | fzf --preview "ls -laTp $(ghq root)/{} | tail -n+4 | awk '{print \$9\"/\"\$6\"/\"\$7 \" \" \$10}'")
   if [ -n "$src" ]; then
     cd "$(ghq root)/$src"
+  fi
+}
+
+function find_repo_claude() {
+  local src=$(ghq list | fzf --preview "ls -laTp $(ghq root)/{} | tail -n+4 | awk '{print \$9\"/\"\$6\"/\"\$7 \" \" \$10}'")
+  if [ -n "$src" ]; then
+    claude "$(ghq root)/$src"
+  fi
+}
+
+function find_repo_code() {
+  local src=$(ghq list | fzf --preview "ls -laTp $(ghq root)/{} | tail -n+4 | awk '{print \$9\"/\"\$6\"/\"\$7 \" \" \$10}'")
+  if [ -n "$src" ]; then
+    code "$(ghq root)/$src"
   fi
 }
 
@@ -105,7 +119,9 @@ function fork_repo() {
 }
 
 # function aliases
-alias g="find_git_repo_local"
+alias g="find_repo"
+alias gclaude="find_repo_claude"
+alias gcode="find_repo_code"
 alias prco="checkout_pr_branch"
 alias prdiff="view_pr_diff"
 alias ghinit="init_github_repo"
