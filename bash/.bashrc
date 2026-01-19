@@ -36,9 +36,9 @@ export PATH="$HOME/.local/bin:$PATH"
 export PATH="/opt/homebrew/bin:$PATH"
 
 # go
-export GOROOT="$HOME/.local/go"
-export GOPATH="$HOME/go"
-export PATH="$GOROOT/bin:$GOPATH/bin:$PATH"
+export GO_ROOT="$HOME/.local/go"
+export GO_PATH="$HOME/go"
+export PATH="$GO_ROOT/bin:$GO_PATH/bin:$PATH"
 
 # homebrew
 eval "$(/opt/homebrew/bin/brew shellenv bash)"

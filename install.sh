@@ -51,7 +51,7 @@ setup_dotfiles() {
     log_section "Setting up dotfiles"
     if [ ! -d "$DOTFILES_DIR" ]; then
         log_step "Cloning dotfiles"
-        if git clone "$REPO_URL" "$DOTFILES_DIR" >/dev/null; then
+        if git clone --quiet "$REPO_URL" "$DOTFILES_DIR"; then
             log_success "Dotfiles cloned"
         else
             log_error "Failed to clone dotfiles"
@@ -59,7 +59,7 @@ setup_dotfiles() {
         fi
     elif [ -d "$DOTFILES_DIR/.git" ]; then
         log_step "Updating existing dotfiles"
-        if git -C "$DOTFILES_DIR" pull --ff-only >/dev/null; then
+        if git -C "$DOTFILES_DIR" pull --ff-only --quiet; then
             log_success "Dotfiles updated"
         else
             log_warn "Local and remote have diverged"
@@ -95,19 +95,23 @@ link_configs() {
 install_packages() {
     [ -d "$DOTFILES_DIR/install" ] || return 0
 
+    local tmpfile
+    tmpfile=$(mktemp)
+    trap 'rm -f "$tmpfile"' EXIT INT TERM
+
     log_section "Installing packages"
-    # TODO: 依存関係宣言できる方法に変更する
-    for dir in common darwin; do
+    for dir in common darwin; do # TODO: 依存関係宣言できる方法に変更する
         for script in "$DOTFILES_DIR/install/$dir"/*.sh; do
             [ -f "$script" ] || continue
+
             script_name="$(basename "$script")"
             log_step "$script_name"
-            local output
-            if output=$(bash "$script" 2>&1); then
+
+            if bash "$script" >"$tmpfile" 2>&1; then
                 log_success "$script_name"
             else
                 log_error "$script_name failed"
-                log_info "$output"
+                log_info "$(cat "$tmpfile")"
             fi
         done
     done
@@ -121,7 +125,8 @@ main() {
 
     log_section "Installation complete"
     log_success "dotfiles installed successfully!"
-    log_info "Run 'source ~/.bashrc' or open a new terminal to apply changes."
+    log_info "Launching bash..."
+    exec bash --login
 }
 
 main
