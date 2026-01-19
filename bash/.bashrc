@@ -15,7 +15,7 @@ BASHRC_DIR="$(cd -P "$(dirname "$_source")" && pwd)"
 unset _source _dir
 
 # config
-PS1='\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+PS1='\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\W\[\033[00m\]$(__git_ps1 "\[\e[33m\](%s)\[\e[0m\]")\$ '
 HISTSIZE=10000
 HISTFILESIZE=20000
 HISTCONTROL=ignoreboth # ignore duplicates and commands starting with space

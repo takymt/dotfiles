@@ -125,6 +125,7 @@ main() {
 
     log_section "Installation complete"
     log_success "dotfiles installed successfully!"
+    log_info "Restart your terminal for \$SHELL to update"
     log_info "Launching bash..."
     exec bash --login
 }
