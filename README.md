@@ -1,5 +1,7 @@
 # dotfiles
 
+Simple, portable dotfiles for macOS, Bash, Claude Code, and more.
+
 ## Install
 
 ```bash
@@ -10,8 +12,12 @@
 
 @takuto-yamamoto (a.k.a tarte)
 
-Inspired by:
+## Inspired by
 - [mozumasu/dotfiles](https://github.com/mozumasu/dotfiles)
 - [ryoppippi/dotfiles](https://github.com/ryoppippi/dotfiles)
 - [shunk031/dotfiles](https://github.com/shunk031/dotfiles)
 - [wshobson/agents](https://github.com/wshobson/agents)
+
+## License
+
+MIT
