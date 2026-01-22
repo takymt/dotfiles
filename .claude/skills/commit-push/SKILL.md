@@ -1,8 +1,15 @@
 ---
 description: Check current changes/branch, commit, and push
+argument-hint: "[--no-branch]"
 disable-model-invocation: true
 allowed-tools: Bash(git add:*), Bash(git commit:*), Bash(git push:*), Bash(git checkout:*), Bash(git switch:*)
 ---
+
+## Arguments
+
+$ARGUMENTS
+
+- `--no-branch`: Push directly to main without creating a new branch
 
 ## Context
 
@@ -14,6 +21,13 @@ allowed-tools: Bash(git add:*), Bash(git commit:*), Bash(git push:*), Bash(git c
 
 Based on the above changes:
 
-1. Create a new branch if on main
+1. If on main and `--no-branch` is NOT specified, create a new branch
 2. Create a single commit with an appropriate message
 3. Push the branch to origin
+
+## Output
+
+After completion, show:
+- **Branch:** branch name
+- **Commit:** commit hash and message
+- **PR:** GitHub PR creation URL
