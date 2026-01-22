@@ -2,6 +2,10 @@
   "permissions": {
     "defaultMode": "plan"
   },
+  "attribution": {
+    "commit": "",
+    "pr": ""
+  },
   "hooks": {
     "Notification": [
       {
