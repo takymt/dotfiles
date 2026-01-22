@@ -1,5 +1,19 @@
 {
   "permissions": {
     "defaultMode": "plan"
+  },
+  "hooks": {
+    "Notification": [
+      {
+        "matcher": "permission_prompt",
+        "hooks": [
+          {
+            "type": "command",
+            "command": ".claude/hooks/permission-notify.sh 'Claude Code' 'Permission required'",
+            "async": true
+          }
+        ]
+      }
+    ]
   }
 }
