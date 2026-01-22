@@ -1,11 +1,6 @@
 {
-  "permissions": {
-    "defaultMode": "plan"
-  },
-  "attribution": {
-    "commit": "",
-    "pr": ""
-  },
+  "language": "english",
+  "model": "opusplan",
   "hooks": {
     "Notification": [
       {
@@ -19,5 +14,41 @@
         ]
       }
     ]
+  },
+  "attribution": {
+    "commit": "",
+    "pr": ""
+  },
+  "permissions": {
+    "defaultMode": "plan",
+     "allow": [
+      "WebSearch",
+      "Bash(ls:*)",
+      "Bash(tree:*)",
+      "Bash(git status:*)",
+      "Bash(git log:*)",
+      "Bash(git diff:*)",
+      "Bash(git fetch:*)",
+      "Bash(* --version)"
+    ],
+    "deny": [
+      "Read(./.env)",
+      "Read(./.env.*)",
+      "Read(./secrets/**)",
+      "Read(./config/credentials.json)",
+      "Read(./build)"
+    ]
+  },
+  "env": {
+    "DISABLE_TELEMETRY": "true"
   }
+
+  // AWS Bedrock Integration Settings
+  // "env": {
+  //   "DISABLE_TELEMETRY": "true",
+  //   "AWS_PROFILE": "my-profile",
+  //   "AWS_REGION": "ap-northeast-1",
+  //   "CLAUDE_CODE_USE_BEDROCK": "true"
+  // },
+  // "awsAuthRefresh": "aws sso login --profile my-profile"
 }
