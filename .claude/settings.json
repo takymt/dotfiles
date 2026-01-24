@@ -8,8 +8,18 @@
         "hooks": [
           {
             "type": "command",
-            "command": ".claude/hooks/permission-notify.sh 'Claude Code' 'Permission required'",
+            "command": ".claude/hooks/notify.sh 'Claude Code' 'Permission required'",
             "async": true
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": ".claude/hooks/notify.sh 'Claude Code' 'Task completed'"
           }
         ]
       }

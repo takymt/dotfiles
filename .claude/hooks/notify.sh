@@ -19,17 +19,17 @@ notify_windows() {
 }
 
 case "$(uname -s)" in
-    Darwin)
-        notify_macos
-        ;;
-    Linux)
-        notify_linux
-        ;;
-    MINGW*|MSYS*|CYGWIN*)
-        notify_windows
-        ;;
-    *)
-        echo "Unsupported OS: $(uname -s)" >&2
-        exit 1
-        ;;
+Darwin)
+    notify_macos
+    ;;
+Linux)
+    notify_linux
+    ;;
+MINGW* | MSYS* | CYGWIN*)
+    notify_windows
+    ;;
+*)
+    echo "Unsupported OS: $(uname -s)" >&2
+    exit 1
+    ;;
 esac
