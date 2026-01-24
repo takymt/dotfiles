@@ -1,4 +1,5 @@
 {
+  "$schema": "vscode://schemas/settings/user",
   "terminal.integrated.defaultProfile.osx": "bash",
   "terminal.integrated.profiles.osx": {
     "bash": {

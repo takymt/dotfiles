@@ -42,6 +42,7 @@ export PATH="$GO_ROOT/bin:$GO_PATH/bin:$PATH"
 
 # homebrew
 eval "$(/opt/homebrew/bin/brew shellenv bash)"
+alias upcc="brew upgrade claude-code"
 
 # ghq
 export GHQ_ROOT="$HOME/git"

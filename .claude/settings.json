@@ -41,14 +41,9 @@
   },
   "env": {
     "DISABLE_TELEMETRY": "true"
+  },
+  "statusLine": {
+    "type": "command",
+    "command": ".claude/hooks/statusline.sh"
   }
-
-  // AWS Bedrock Integration Settings
-  // "env": {
-  //   "DISABLE_TELEMETRY": "true",
-  //   "AWS_PROFILE": "my-profile",
-  //   "AWS_REGION": "ap-northeast-1",
-  //   "CLAUDE_CODE_USE_BEDROCK": "true"
-  // },
-  // "awsAuthRefresh": "aws sso login --profile my-profile"
 }
