@@ -88,6 +88,7 @@ link_configs() {
 
     log_step "Linking non-XDG config"
     ln -sfn "$DOTFILES_DIR/.config/czg/cz.config.mjs" "$HOME/cz.config.mjs"
+    ln -sfn "$DOTFILES_DIR/.claude" "$HOME/.claude"
 
     # TODO: migrate current vscode/iTerm2 settings
     # TODO: support non-macOS platforms
