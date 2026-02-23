@@ -40,8 +40,15 @@ if ! command -v chezmoi &>/dev/null; then
     eval "$(devbox global shellenv)"
 fi
 
-# Apply dotfiles
+# Apply/update dotfiles
 echo "==> Applying dotfiles..."
-chezmoi init --apply takymt/dotfiles
+chezmoi_source_dir="$(chezmoi source-path 2>/dev/null || echo "$HOME/.local/share/chezmoi")"
+if [[ -d "$chezmoi_source_dir/.git" ]]; then
+    echo "==> Updating existing chezmoi source..."
+    chezmoi update
+else
+    echo "==> Initializing chezmoi source..."
+    chezmoi init --apply takymt/dotfiles
+fi
 
 echo "==> Done! Restart your shell or run: exec zsh"
