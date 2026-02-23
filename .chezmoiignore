@@ -6,6 +6,7 @@ justfile
 install.sh
 devbox.json
 devbox.lock
+docs/
 
 # Editor/tooling configs for this repo
 .editorconfig

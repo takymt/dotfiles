@@ -1,6 +1,10 @@
 # dotfiles
 
-My dotfiles by [chezmoi](https://www.chezmoi.io/) and [devbox](https://www.jetify.com/devbox)
+[![Test Dotfiles](https://github.com/takymt/dotfiles/actions/workflows/test.yml/badge.svg)](https://github.com/takymt/dotfiles/actions/workflows/test.yml)
+
+My dotfiles managed with [chezmoi](https://www.chezmoi.io/) and [devbox](https://www.jetify.com/devbox)
+
+![demo](/docs/demo.png)
 
 ## Install
 
