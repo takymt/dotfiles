@@ -5,7 +5,7 @@ My dotfiles by [chezmoi](https://www.chezmoi.io/) and [devbox](https://www.jetif
 ## Install
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/takymt/dotdiles/main/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/takymt/dotfiles/main/install.sh | bash
 ```
 
 ## Author
