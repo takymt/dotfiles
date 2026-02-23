@@ -1,0 +1,38 @@
+{
+  "$schema": "https://raw.githubusercontent.com/jetify-com/devbox/main/.schema/devbox.schema.json",
+  "packages": [
+    "go@1.26",
+    "nodejs@24",
+    "neovim@0.11",
+    "git@latest",
+    "ghq@latest",
+    "fzf@latest",
+    "ripgrep@latest",
+    "fd@latest",
+    "bat@latest",
+    "eza@latest",
+    "zoxide@latest",
+    "lazygit@latest",
+    "direnv@latest",
+    "jq@latest",
+    "yq@latest",
+    "delta@latest",
+    "chezmoi@latest",
+    "just@latest",
+    "stylua@latest",
+    "shfmt@latest",
+    "shellcheck@latest",
+    "atuin@latest",
+    "keychain@latest",
+    "mise@latest",
+    "pnpm@latest",
+    "kubectl@latest",
+    "gitleaks@latest",
+    "glow@latest",
+    "tree-sitter@latest",
+    "uv@latest"
+  ],
+  "shell": {
+    "init_hook": []
+  }
+}

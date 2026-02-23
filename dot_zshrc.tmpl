@@ -1,0 +1,112 @@
+# =============================================================================
+# XDG Base Directory (fallback if .zshenv not sourced)
+# =============================================================================
+export XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-$HOME/.config}"
+export XDG_DATA_HOME="${XDG_DATA_HOME:-$HOME/.local/share}"
+export XDG_CACHE_HOME="${XDG_CACHE_HOME:-$HOME/.cache}"
+export XDG_STATE_HOME="${XDG_STATE_HOME:-$HOME/.local/state}"
+
+# =============================================================================
+# Homebrew safety
+# =============================================================================
+# Prevent accidental installation of tools managed by other package managers
+# - node/npm/pnpm/yarn: use devbox or mise
+# - python/pip: use uv
+# - claude: use npm -g
+export HOMEBREW_FORBIDDEN_FORMULAE="node python python3 pip npm pnpm yarn claude"
+
+# =============================================================================
+# Terminal compatibility
+# =============================================================================
+# Fall back to xterm-256color if terminfo is missing (e.g., SSH to older servers)
+if [[ "$TERM" == "xterm-ghostty" ]] && ! infocmp xterm-ghostty &>/dev/null; then
+  export TERM=xterm-256color
+fi
+
+# =============================================================================
+# Performance flags
+# =============================================================================
+DISABLE_MAGIC_FUNCTIONS=true
+skip_global_compinit=1
+
+# =============================================================================
+# Powerlevel10k instant prompt
+# =============================================================================
+# Enable instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
+{{ include "dot_config/zsh/split/plugins.zsh" }}
+{{ include "dot_config/zsh/split/options.zsh" }}
+{{ include "dot_config/zsh/split/aliases.zsh" }}
+{{ include "dot_config/zsh/split/functions.zsh" }}
+
+# =============================================================================
+# SSH Agent
+# =============================================================================
+{{- if eq .chezmoi.os "darwin" }}
+# macOS: Use system SSH agent with Keychain integration
+if [[ -z "$SSH_AUTH_SOCK" ]]; then
+  # Try to get from launchctl first
+  local sock
+  sock=$(launchctl getenv SSH_AUTH_SOCK)
+
+  # Fallback: Find listener socket safely (restricted to current user)
+  if [[ ! -S "$sock" ]]; then
+    sock=$(find /private/tmp/com.apple.launchd.* -name Listeners -user "$USER" -type s 2>/dev/null | head -1)
+  fi
+
+  [[ -S "$sock" ]] && export SSH_AUTH_SOCK="$sock"
+fi
+
+# Load keys into agent (only if agent is available)
+[[ -S "$SSH_AUTH_SOCK" ]] && ssh-add --apple-load-keychain &>/dev/null
+{{- else }}
+# Linux: Use keychain for SSH agent management
+if command -v keychain &>/dev/null; then
+  local ssh_keys=()
+  [[ -f "$HOME/.ssh/id_ed25519" ]] && ssh_keys+=("id_ed25519")
+  [[ -f "$HOME/.ssh/id_github" ]] && ssh_keys+=("id_github")
+  [[ -f "$HOME/.ssh/id_rsa" ]] && ssh_keys+=("id_rsa")
+
+  if (( ${#ssh_keys[@]} > 0 )); then
+    eval "$(keychain --eval --quiet ${ssh_keys[@]})"
+  fi
+fi
+{{- end }}
+
+# =============================================================================
+# pnpm setup
+# =============================================================================
+export PNPM_HOME="$HOME/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+
+# =============================================================================
+# Local environment variables (not managed by chezmoi)
+# =============================================================================
+# Priority: .env.local -> .zshrc.local (both are gitignored)
+
+# Machine-specific environment variables
+[[ -f "$HOME/.env.local" ]] && source "$HOME/.env.local"
+
+# Machine-specific shell configuration
+[[ -f "$HOME/.zshrc.local" ]] && source "$HOME/.zshrc.local"
+{{- if .business_use }}
+
+# =============================================================================
+# Work Environment
+# =============================================================================
+# Add work-specific configurations here
+{{ end }}
+
+# =============================================================================
+# Powerlevel10k configuration
+# =============================================================================
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

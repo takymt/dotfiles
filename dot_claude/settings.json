@@ -1,0 +1,117 @@
+{
+  "model": "opusplan",
+  "hooks": {
+    "Notification": [
+      {
+        "matcher": "permission_prompt",
+        "hooks": [
+          {
+            "type": "command",
+            "command": ".claude/hooks/notify.sh 'Claude Code' 'Permission required'",
+            "async": true
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": ".claude/hooks/notify.sh 'Claude Code' 'Task completed'"
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": ".claude/hooks/open-plan.sh",
+            "async": true
+          }
+        ]
+      }
+    ]
+  },
+  "permissions": {
+    "defaultMode": "plan",
+     "allow": [
+      "WebSearch",
+      "Bash(ls:*)",
+      "Bash(tree:*)",
+      "Bash(git status:*)",
+      "Bash(git log:*)",
+      "Bash(git diff:*)",
+      "Bash(git fetch:*)",
+      "Bash(* --version)"
+    ],
+    "deny": [
+      "Bash(sudo:*)",
+      "Bash(rm -rf /:*)",
+      "Bash(rm -rf /*:*)",
+      "Bash(rm -rf ~:*)",
+      "Bash(rm -rf .:*)",
+      "Bash(rm -rf ..:*)",
+      "Bash(chmod 777:*)",
+      "Bash(chown:*)",
+      "Bash(shutdown:*)",
+      "Bash(reboot:*)",
+      "Bash(killall:*)",
+      "Bash(git reset:*)",
+      "Bash(git rebase:*)",
+      "Bash(git push --force:*)",
+      "Bash(git push -f:*)",
+      "Bash(curl:*)",
+      "Bash(wget:*)",
+      "Bash(nc:*)",
+      "Bash(psql:*)",
+      "Bash(mysql:*)",
+      "Bash(mongod:*)",
+      "Read(.env.*)",
+      "Read(./secrets/**)",
+      "Read(./build)",
+      "Read(id_rsa)",
+      "Read(id_ed25519)",
+      "Read(**/*token*)",
+      "Read(**/*.pem)",
+      "Read(**/*.key)",
+      "Read(**/*_key)",
+      "Read(**/*_key.*)",
+      "Read(**/*credential*)",
+      "Read(**/*password*)",
+      "Read(**/*secret*)",
+      "Read(**/.netrc)",
+      "Read(**/.npmrc)",
+      "Write(.env*)",
+      "Write(**/secrets/**)",
+      "Write(**/.ssh/*)",
+      "Write(**/authorized_keys)"
+    ]
+  },
+  "statusLine": {
+    "type": "command",
+    "command": "pnpx ccusage statusline",
+    "padding": 0
+  },
+  "enabledPlugins": {
+    "frontend-design@claude-plugins-official": true,
+    "security-guidance@claude-plugins-official": true,
+    "commit-commands@claude-plugins-official": true,
+    "hookify@claude-plugins-official": true,
+    "code-review@claude-plugins-official": true,
+    "explanatory-output-style@claude-plugins-official": true,
+    "feature-dev@claude-plugins-official": true,
+    "learning-output-style@claude-plugins-official": true,
+    "pr-review-toolkit@claude-plugins-official": true,
+    "ralph-wiggum@claude-plugins-official": true,
+    "document-skills@anthropic-agent-skills": true,
+    "example-skills@anthropic-agent-skills": true,
+    "code-simplifier@claude-plugins-official": true,
+    "ralph-loop@claude-plugins-official": true,
+    "swift-lsp@claude-plugins-official": false
+  },
+  "alwaysThinkingEnabled": true
+}

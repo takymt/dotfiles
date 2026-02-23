@@ -1,0 +1,36 @@
+# pnpm configuration
+auto-install-peers=true
+shell-emulator=true
+
+# Supply chain security
+minimum-release-age=3 days
+
+# Performance optimizations
+prefer-frozen-lockfile=true
+side-effects-cache=true
+resolution-mode=highest
+node-linker=isolated
+
+# Storage
+store-dir={{ .chezmoi.homeDir }}/.local/share/pnpm/store
+global-dir={{ .chezmoi.homeDir }}/.local/share/pnpm/global
+state-dir={{ .chezmoi.homeDir }}/.local/share/pnpm/state
+cache-dir={{ .chezmoi.homeDir }}/.local/share/pnpm/cache
+modules-cache-max-age=10080
+
+# Network
+fetch-retries=3
+fetch-retry-factor=2
+fetch-retry-mintimeout=10000
+fetch-retry-maxtimeout=60000
+fetch-timeout=60000
+
+# Output
+loglevel=info
+color=always
+
+# Security
+engine-strict=true
+
+# Auth (token from environment variable)
+//registry.npmjs.org/:_authToken=${NPM_TOKEN}
