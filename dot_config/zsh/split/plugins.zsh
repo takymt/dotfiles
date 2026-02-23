@@ -39,12 +39,14 @@ zinit light romkatv/powerlevel10k
 # =============================================================================
 # Tool initialization (turbo mode)
 # =============================================================================
+# NOTE: `chezmoi`'s `include` rendering rewrites `${+commands[...]}` in this file
+# into invalid arithmetic syntax in the generated `~/.zshrc`, so use `command -v`.
 _zsh_cache="${XDG_CACHE_HOME}/zsh/init"
 [[ -d "$_zsh_cache" ]] || mkdir -p "$_zsh_cache"
 
 # zoxide (turbo)
 _zinit_setup_zoxide() {
-  if (( ${+commands[zoxide]} )); then
+  if command -v zoxide >/dev/null 2>&1; then
     local _zoxide_cache="${XDG_CACHE_HOME}/zsh/init/zoxide.zsh"
     [[ -f "$_zoxide_cache" ]] || zoxide init zsh >"$_zoxide_cache"
     source "$_zoxide_cache"
@@ -57,7 +59,7 @@ zinit wait"1" lucid light-mode for \
 
 # atuin (turbo) - shell history (load after fzf to override Ctrl+R)
 _zinit_setup_atuin() {
-  if (( ${+commands[atuin]} )); then
+  if command -v atuin >/dev/null 2>&1; then
     local _atuin_cache="${XDG_CACHE_HOME}/zsh/init/atuin.zsh"
     [[ -f "$_atuin_cache" ]] || atuin init zsh --disable-up-arrow >"$_atuin_cache"
     source "$_atuin_cache"
@@ -70,7 +72,7 @@ zinit wait"2" lucid light-mode for \
 
 # fzf (turbo)
 _zinit_setup_fzf() {
-  if (( ${+commands[fzf]} )); then
+  if command -v fzf >/dev/null 2>&1; then
     local _fzf_cache="${XDG_CACHE_HOME}/zsh/init/fzf.zsh"
     [[ -f "$_fzf_cache" ]] || fzf --zsh >"$_fzf_cache"
     source "$_fzf_cache"
@@ -105,7 +107,7 @@ zinit wait"1" lucid light-mode for \
 
 # direnv (turbo)
 _zinit_setup_direnv() {
-  if (( ${+commands[direnv]} )); then
+  if command -v direnv >/dev/null 2>&1; then
     local _direnv_cache="${XDG_CACHE_HOME}/zsh/init/direnv.zsh"
     [[ -f "$_direnv_cache" ]] || direnv hook zsh >"$_direnv_cache"
     source "$_direnv_cache"
@@ -127,42 +129,42 @@ _zinit_setup_completions() {
   local cache_dir="${XDG_CACHE_HOME}/zsh/completions"
 
   # gh (GitHub CLI)
-  if (( ${+commands[gh]} )); then
+  if command -v gh >/dev/null 2>&1; then
     local _gh_comp="$cache_dir/_gh"
     [[ -f "$_gh_comp" ]] || gh completion -s zsh >"$_gh_comp"
     source "$_gh_comp"
   fi
 
   # chezmoi
-  if (( ${+commands[chezmoi]} )); then
+  if command -v chezmoi >/dev/null 2>&1; then
     local _chezmoi_comp="$cache_dir/_chezmoi"
     [[ -f "$_chezmoi_comp" ]] || chezmoi completion zsh >"$_chezmoi_comp"
     source "$_chezmoi_comp"
   fi
 
   # just
-  if (( ${+commands[just]} )); then
+  if command -v just >/dev/null 2>&1; then
     local _just_comp="$cache_dir/_just"
     [[ -f "$_just_comp" ]] || just --completions zsh >"$_just_comp"
     source "$_just_comp"
   fi
 
   # mise
-  if (( ${+commands[mise]} )); then
+  if command -v mise >/dev/null 2>&1; then
     local _mise_comp="$cache_dir/_mise"
     [[ -f "$_mise_comp" ]] || mise completion zsh >"$_mise_comp"
     source "$_mise_comp"
   fi
 
   # pnpm
-  if (( ${+commands[pnpm]} )); then
+  if command -v pnpm >/dev/null 2>&1; then
     local _pnpm_comp="$cache_dir/_pnpm"
     [[ -f "$_pnpm_comp" ]] || pnpm completion zsh >"$_pnpm_comp"
     source "$_pnpm_comp"
   fi
 
   # kubectl
-  if (( ${+commands[kubectl]} )); then
+  if command -v kubectl >/dev/null 2>&1; then
     local _kubectl_comp="$cache_dir/_kubectl"
     [[ -f "$_kubectl_comp" ]] || kubectl completion zsh >"$_kubectl_comp"
     source "$_kubectl_comp"
