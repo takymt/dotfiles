@@ -8,7 +8,7 @@ paths: ["**/*.tmpl"]
 
 - Use Go template syntax: `{{ .variable }}`, `{{- ... -}}` for whitespace control
 - Access chezmoi data via `.chezmoi.os`, `.chezmoi.arch`, `.chezmoi.homeDir`
-- Custom data defined in `.chezmoi.yaml.tmpl` accessed via `.name`, `.email`, `.business_use`, etc.
+- Custom data defined in `.chezmoi.yaml.tmpl` accessed via `.name`, `.email`, etc.
 
 ## Conditional Patterns
 
@@ -21,6 +21,7 @@ paths: ["**/*.tmpl"]
 ## Testing Changes
 
 Always test template changes with both environments:
+
 ```bash
 chezmoi execute-template < file.tmpl              # Test with current config
 ```

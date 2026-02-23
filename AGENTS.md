@@ -42,5 +42,5 @@ just diff        # Show pending chezmoi changes
 GitHub Actions runs on every push/PR to main:
 - Format check (stylua for Lua, JSON validation)
 - Lint (zsh syntax, lua syntax)
-- Chezmoi dry-run on Linux and macOS (both personal and business modes)
+- Chezmoi dry-run on Linux and macOS
 - Neovim startup test
