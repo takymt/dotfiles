@@ -4,7 +4,7 @@ This file provides guidance to LLM agents when working with code in this reposit
 
 ## Overview
 
-Personal dotfiles managed with [chezmoi](https://www.chezmoi.io/) and [devbox](https://www.jetify.com/devbox). Files prefixed with `dot_` become dotfiles (e.g., `dot_zshrc.tmpl` → `~/.zshrc`).
+My dotfiles managed with [chezmoi](https://www.chezmoi.io/) and [devbox](https://www.jetify.com/devbox). Files prefixed with `dot_` become dotfiles (e.g., `dot_zshrc.tmpl` → `~/.zshrc`).
 
 ## Commands
 
@@ -33,7 +33,7 @@ just diff        # Show pending chezmoi changes
 ### Configuration Directories
 
 - `dot_config/nvim/` - Neovim config (kickstart-based, uses lazy.nvim)
-- `dot_config/git/` - Git config with conditional includes for work/personal
+- `dot_config/git/` - Git config with conditional
 - `dot_config/ghostty/` - Terminal emulator config
 - `private_dot_ssh/` - SSH config (common settings only)
 

@@ -4,7 +4,7 @@
 {{- end -}}
 
 {{- $name := promptStringOnce . "name" "Your name" -}}
-{{- $email := promptStringOnce . "email" "Your email (personal)" -}}
+{{- $email := promptStringOnce . "email" "Your email" -}}
 
 data:
   osid: {{ $osID | quote }}
