@@ -28,8 +28,6 @@ return {
           "gopls",
           "rust_analyzer",
           "pyright",
-          "ruby_lsp",
-          "sorbet",
         },
         automatic_installation = true,
       })
@@ -120,18 +118,8 @@ return {
         capabilities = capabilities,
       }
 
-      -- Ruby
-      vim.lsp.config.ruby_lsp = {
-        capabilities = capabilities,
-      }
-
-      -- Ruby (Sorbet for type checking)
-      vim.lsp.config.sorbet = {
-        capabilities = capabilities,
-      }
-
       -- Enable all configured servers
-      vim.lsp.enable({ "lua_ls", "ts_ls", "gopls", "rust_analyzer", "pyright", "ruby_lsp", "sorbet" })
+      vim.lsp.enable({ "lua_ls", "ts_ls", "gopls", "rust_analyzer", "pyright" })
     end,
   },
 
@@ -162,7 +150,6 @@ return {
         go = { "gofumpt", "goimports" },
         python = { "black" },
         rust = { "rustfmt" },
-        ruby = { "stree" },
       },
       format_on_save = {
         timeout_ms = 500,
