@@ -7,7 +7,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": ".claude/hooks/notify.sh 'Claude Code' 'Permission required'",
+            "command": "hooks/notify.sh 'Claude Code' 'Permission required'",
             "async": true
           }
         ]
@@ -18,7 +18,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": ".claude/hooks/notify.sh 'Claude Code' 'Task completed'"
+            "command": "hooks/notify.sh 'Claude Code' 'Task completed'"
           }
         ]
       }
@@ -29,7 +29,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": ".claude/hooks/open-plan.sh",
+            "command": "hooks/open-plan.sh",
             "async": true
           }
         ]
@@ -38,7 +38,7 @@
   },
   "permissions": {
     "defaultMode": "plan",
-     "allow": [
+    "allow": [
       "WebSearch",
       "Bash(ls:*)",
       "Bash(tree:*)",
