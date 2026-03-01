@@ -124,7 +124,6 @@ _ghq_open() {
 
   local dir="$root/$repo"
   if [[ -d "$dir" ]]; then
-    cd "$dir"
     command "$cmd" .
   else
     echo "Directory not found: $dir" >&2
