@@ -54,6 +54,7 @@ keybind = super+right_bracket=goto_split:next
 keybind = super+plus=increase_font_size:1
 keybind = super+minus=decrease_font_size:1
 keybind = super+zero=reset_font_size
+keybind = global:super+shift+space=toggle_visibility
 
 # Tokyo Night theme
 background = 1a1b26
