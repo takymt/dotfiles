@@ -21,15 +21,6 @@
 *.local.*
 local.*
 
-# Runtime managers
-.mise.toml
-.tool-versions
-.node-version
-.ruby-version
-.python-version
-devbox.json
-devbox.lock
-
 # Cache
 .cache/
 *.zwc
