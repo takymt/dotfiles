@@ -3,13 +3,6 @@
 .AppleDouble
 .LSOverride
 
-# IDE
-.idea/
-.vscode/
-*.swp
-*.swo
-*~
-
 # Environment
 .env
 .env.*
