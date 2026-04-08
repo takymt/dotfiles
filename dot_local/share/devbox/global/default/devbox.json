@@ -20,6 +20,7 @@
     "delta@latest",
     "chezmoi@latest",
     "just@latest",
+    "just-lsp@latest",
     "stylua@latest",
     "shfmt@latest",
     "shellcheck@latest",
