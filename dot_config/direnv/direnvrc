@@ -3,6 +3,8 @@
 # direnv standard library extensions
 # =============================================================================
 
+source $HOME/.nix-profile/share/nix-direnv/direnvrc
+
 # dotenv_if_exists: Load .env file if it exists
 # Usage in .envrc: dotenv_if_exists
 dotenv_if_exists() {

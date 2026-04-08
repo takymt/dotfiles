@@ -6,7 +6,6 @@
 # Environment
 .env
 .env.*
-.envrc
 !.env.example
 
 # Local configs

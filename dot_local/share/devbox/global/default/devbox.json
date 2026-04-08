@@ -14,6 +14,7 @@
     "zoxide@latest",
     "lazygit@latest",
     "direnv@latest",
+    "nix-direnv@latest",
     "jq@latest",
     "yq@latest",
     "delta@latest",
