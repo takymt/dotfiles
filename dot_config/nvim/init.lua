@@ -5,13 +5,6 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
 -- =============================================================================
--- Disable unused providers
--- =============================================================================
-vim.g.loaded_node_provider = 0
-vim.g.loaded_perl_provider = 0
-vim.g.loaded_python3_provider = 0
-
--- =============================================================================
 -- Options
 -- =============================================================================
 local opt = vim.opt
@@ -44,7 +37,6 @@ opt.scrolloff = 8
 opt.sidescrolloff = 8
 
 -- Behavior
-opt.hidden = true
 opt.mouse = "a"
 opt.clipboard = "unnamedplus"
 opt.splitright = true

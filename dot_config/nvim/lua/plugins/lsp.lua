@@ -6,7 +6,6 @@ return {
     dependencies = {
       "williamboman/mason.nvim",
       "williamboman/mason-lspconfig.nvim",
-      { "j-hui/fidget.nvim", opts = {} },
     },
     config = function()
       -- Setup Mason first
@@ -36,38 +35,29 @@ return {
       vim.api.nvim_create_autocmd("LspAttach", {
         group = vim.api.nvim_create_augroup("lsp-attach", { clear = true }),
         callback = function(event)
-          local map = function(keys, func, desc)
-            vim.keymap.set("n", keys, func, { buffer = event.buf, desc = "LSP: " .. desc })
+          local function map(keys, func, desc)
+            vim.keymap.set(
+              "n",
+              keys,
+              func,
+              { buffer = event.buf, noremap = true, silent = true, desc = "LSP: " .. desc }
+            )
           end
 
-          map("gd", require("telescope.builtin").lsp_definitions, "Goto Definition")
-          map("gr", require("telescope.builtin").lsp_references, "Goto References")
-          map("gI", require("telescope.builtin").lsp_implementations, "Goto Implementation")
-          map("gy", require("telescope.builtin").lsp_type_definitions, "Goto Type Definition")
-          map("<leader>ds", require("telescope.builtin").lsp_document_symbols, "Document Symbols")
-          map("<leader>ws", require("telescope.builtin").lsp_dynamic_workspace_symbols, "Workspace Symbols")
-          map("<leader>rn", vim.lsp.buf.rename, "Rename")
-          map("<leader>ca", vim.lsp.buf.code_action, "Code Action")
-          map("K", vim.lsp.buf.hover, "Hover Documentation")
-          map("gD", vim.lsp.buf.declaration, "Goto Declaration")
-
-          -- Format on save
-          local client = vim.lsp.get_client_by_id(event.data.client_id)
-          if client and client.server_capabilities.documentFormattingProvider then
-            vim.api.nvim_create_autocmd("BufWritePre", {
-              buffer = event.buf,
-              callback = function()
-                vim.lsp.buf.format({ bufnr = event.buf })
-              end,
-            })
-          end
+          map("gd", vim.lsp.buf.definition, "Go to definition")
+          map("gr", vim.lsp.buf.references, "Go to references")
+          map("gI", vim.lsp.buf.implementation, "Go to implementation")
+          map("gy", vim.lsp.buf.type_definition, "Go to type definition")
+          map("gD", vim.lsp.buf.declaration, "Go to declaration")
+          map("K", vim.lsp.buf.hover, "Hover documentation")
+          map("<leader>rn", vim.lsp.buf.rename, "Rename symbol")
+          map("<leader>ca", vim.lsp.buf.code_action, "Code action")
+          map("<leader>ds", vim.lsp.buf.document_symbol, "Document symbols")
+          map("<leader>ws", vim.lsp.buf.workspace_symbol, "Workspace symbols")
         end,
       })
 
-      -- LSP capabilities (for nvim-cmp)
-      local capabilities = vim.lsp.protocol.make_client_capabilities()
-      capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
-
+      local capabilities = require("cmp_nvim_lsp").default_capabilities()
       -- Setup servers using vim.lsp.config (Neovim 0.11+)
       -- Lua
       vim.lsp.config.lua_ls = {
@@ -82,13 +72,9 @@ return {
             diagnostics = {
               globals = { "vim" },
             },
-            completion = {
-              callSnippet = "Replace",
-            },
           },
         },
       }
-
       -- TypeScript
       vim.lsp.config.ts_ls = {
         capabilities = capabilities,
@@ -97,15 +83,6 @@ return {
       -- Go
       vim.lsp.config.gopls = {
         capabilities = capabilities,
-        settings = {
-          gopls = {
-            analyses = {
-              unusedparams = true,
-            },
-            staticcheck = true,
-            gofumpt = true,
-          },
-        },
       }
 
       -- Rust
@@ -132,29 +109,42 @@ return {
       {
         "<leader>cf",
         function()
-          require("conform").format({ async = true, lsp_fallback = true })
+          require("conform").format({ async = true, lsp_format = "fallback" })
         end,
         desc = "Format buffer",
       },
     },
-    opts = {
-      formatters_by_ft = {
-        lua = { "stylua" },
-        javascript = { "prettier" },
-        typescript = { "prettier" },
-        javascriptreact = { "prettier" },
-        typescriptreact = { "prettier" },
-        json = { "prettier" },
-        yaml = { "prettier" },
-        markdown = { "prettier" },
-        go = { "gofumpt", "goimports" },
-        python = { "black" },
-        rust = { "rustfmt" },
-      },
-      format_on_save = {
-        timeout_ms = 500,
-        lsp_fallback = true,
-      },
-    },
+    opts = function()
+      local js_formatters = { "oxfmt", "biome", "prettier", stop_after_first = true }
+      local config_formatters = { "dprint", "prettier", stop_after_first = true }
+
+      return {
+        formatters_by_ft = {
+          lua = { "stylua" },
+          javascript = js_formatters,
+          typescript = js_formatters,
+          javascriptreact = js_formatters,
+          typescriptreact = js_formatters,
+          astro = js_formatters,
+          json = config_formatters,
+          yaml = config_formatters,
+          markdown = config_formatters,
+          go = { "gofumpt", "goimports" },
+          python = function(bufnr)
+            if require("conform").get_formatter_info("ruff_format", bufnr).available then
+              return { "ruff_format" }
+            else
+              return { "isort", "black" }
+            end
+          end,
+          rust = { "rustfmt" },
+        },
+        format_on_save = {
+          timeout_ms = 500,
+          lsp_format = "fallback",
+        },
+        log_level = vim.log.levels.ERROR,
+      }
+    end,
   },
 }
