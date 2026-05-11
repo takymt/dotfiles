@@ -132,9 +132,28 @@ _ghq_open() {
 }
 
 gcode() { _ghq_open code; }
-gcodex() { _ghq_open codex; }
-gkiro() { _ghq_open kiro; }
-gclaude() { _ghq_open claude; }
+_no_completion_ai_blocked() {
+  echo "AI tools are disabled while NO_COMPLETION=1." >&2
+  return 126
+}
+
+if [[ "${NO_COMPLETION:-0}" == "1" ]]; then
+  gcodex() { _no_completion_ai_blocked; }
+  gkiro() { _no_completion_ai_blocked; }
+  gclaude() { _no_completion_ai_blocked; }
+  codex() { _no_completion_ai_blocked; }
+  kiro() { _no_completion_ai_blocked; }
+  claude() { _no_completion_ai_blocked; }
+else
+  gcodex() { _ghq_open codex; }
+  gkiro() { _ghq_open kiro; }
+  gclaude() { _ghq_open claude; }
+fi
+
+no-completion() {
+  echo "Starting zsh with NO_COMPLETION=1. Exit this shell to return."
+  NO_COMPLETION=1 DISABLE_ZSH_AUTOSUGGESTIONS=true zsh -l
+}
 
 # Remove merged branches (from existing config)
 PROTECTED_BRANCHES='main|master|develop|staging'
@@ -288,7 +307,7 @@ dots() {
 ╰──────────────────────────────────────────────────────────────────╯
 
 📁 Config Locations
-  ~/.config/nvim/      Neovim (kickstart + Copilot)
+  ~/.config/nvim/      Neovim (kickstart-based)
   ~/.config/git/       Git (delta, conditional includes)
   ~/.p10k.zsh          Prompt (powerlevel10k)
   ~/.config/lazygit/   Git TUI (conventional commits)
@@ -328,7 +347,9 @@ dots() {
   <leader>fg   Live grep
   <leader>e    File explorer
   gd           Go to definition
-  <leader>cc   Copilot Chat
+
+🚫 No-completion mode
+  no-completion   Start a shell with shell completions, AI commands, and Neovim completion disabled
 
 🔄 Chezmoi
   chezmoi diff       Show pending changes

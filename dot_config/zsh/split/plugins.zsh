@@ -13,17 +13,26 @@ source "${ZINIT_HOME}/zinit.zsh"
 # =============================================================================
 # Turbo-loaded plugins
 # =============================================================================
-zinit wait lucid blockf light-mode for \
-  atload"zicompinit; zicdreplay" \
-  zsh-users/zsh-completions
+if [[ "${NO_COMPLETION:-0}" != "1" ]]; then
+  zinit wait lucid blockf light-mode for \
+    atload"zicompinit; zicdreplay" \
+    zsh-users/zsh-completions
+fi
 
-zinit wait lucid light-mode for \
-  atinit"ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay" \
-  zdharma-continuum/fast-syntax-highlighting
+if [[ "${NO_COMPLETION:-0}" == "1" ]]; then
+  zinit wait lucid light-mode for \
+    zdharma-continuum/fast-syntax-highlighting
+else
+  zinit wait lucid light-mode for \
+    atinit"ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay" \
+    zdharma-continuum/fast-syntax-highlighting
+fi
 
-zinit wait lucid light-mode for \
-  atload"_zsh_autosuggest_start" \
-  zsh-users/zsh-autosuggestions
+if [[ "${NO_COMPLETION:-0}" != "1" ]]; then
+  zinit wait lucid light-mode for \
+    atload"_zsh_autosuggest_start" \
+    zsh-users/zsh-autosuggestions
+fi
 
 zinit wait lucid light-mode for \
   zsh-users/zsh-history-substring-search
@@ -101,9 +110,11 @@ _zinit_setup_fzf() {
   fi
 }
 
-zinit wait"1" lucid light-mode for \
-  atload"_zinit_setup_fzf" \
-  zdharma-continuum/null
+if [[ "${NO_COMPLETION:-0}" != "1" ]]; then
+  zinit wait"1" lucid light-mode for \
+    atload"_zinit_setup_fzf" \
+    zdharma-continuum/null
+fi
 
 # direnv (turbo)
 _zinit_setup_direnv() {
@@ -122,58 +133,60 @@ zinit wait"2" lucid light-mode for \
 # =============================================================================
 # Tool completions (cached, turbo mode)
 # =============================================================================
-_completions_cache="${XDG_CACHE_HOME}/zsh/completions"
-[[ -d "$_completions_cache" ]] || mkdir -p "$_completions_cache"
+if [[ "${NO_COMPLETION:-0}" != "1" ]]; then
+  _completions_cache="${XDG_CACHE_HOME}/zsh/completions"
+  [[ -d "$_completions_cache" ]] || mkdir -p "$_completions_cache"
 
-_zinit_setup_completions() {
-  local cache_dir="${XDG_CACHE_HOME}/zsh/completions"
+  _zinit_setup_completions() {
+    local cache_dir="${XDG_CACHE_HOME}/zsh/completions"
 
-  # gh (GitHub CLI)
-  if command -v gh >/dev/null 2>&1; then
-    local _gh_comp="$cache_dir/_gh"
-    [[ -f "$_gh_comp" ]] || gh completion -s zsh >"$_gh_comp"
-    source "$_gh_comp"
-  fi
+    # gh (GitHub CLI)
+    if command -v gh >/dev/null 2>&1; then
+      local _gh_comp="$cache_dir/_gh"
+      [[ -f "$_gh_comp" ]] || gh completion -s zsh >"$_gh_comp"
+      source "$_gh_comp"
+    fi
 
-  # chezmoi
-  if command -v chezmoi >/dev/null 2>&1; then
-    local _chezmoi_comp="$cache_dir/_chezmoi"
-    [[ -f "$_chezmoi_comp" ]] || chezmoi completion zsh >"$_chezmoi_comp"
-    source "$_chezmoi_comp"
-  fi
+    # chezmoi
+    if command -v chezmoi >/dev/null 2>&1; then
+      local _chezmoi_comp="$cache_dir/_chezmoi"
+      [[ -f "$_chezmoi_comp" ]] || chezmoi completion zsh >"$_chezmoi_comp"
+      source "$_chezmoi_comp"
+    fi
 
-  # just
-  if command -v just >/dev/null 2>&1; then
-    local _just_comp="$cache_dir/_just"
-    [[ -f "$_just_comp" ]] || just --completions zsh >"$_just_comp"
-    source "$_just_comp"
-  fi
+    # just
+    if command -v just >/dev/null 2>&1; then
+      local _just_comp="$cache_dir/_just"
+      [[ -f "$_just_comp" ]] || just --completions zsh >"$_just_comp"
+      source "$_just_comp"
+    fi
 
-  # mise
-  if command -v mise >/dev/null 2>&1; then
-    local _mise_comp="$cache_dir/_mise"
-    [[ -f "$_mise_comp" ]] || mise completion zsh >"$_mise_comp"
-    source "$_mise_comp"
-  fi
+    # mise
+    if command -v mise >/dev/null 2>&1; then
+      local _mise_comp="$cache_dir/_mise"
+      [[ -f "$_mise_comp" ]] || mise completion zsh >"$_mise_comp"
+      source "$_mise_comp"
+    fi
 
-  # pnpm
-  if command -v pnpm >/dev/null 2>&1; then
-    local _pnpm_comp="$cache_dir/_pnpm"
-    [[ -f "$_pnpm_comp" ]] || pnpm completion zsh >"$_pnpm_comp"
-    source "$_pnpm_comp"
-  fi
+    # pnpm
+    if command -v pnpm >/dev/null 2>&1; then
+      local _pnpm_comp="$cache_dir/_pnpm"
+      [[ -f "$_pnpm_comp" ]] || pnpm completion zsh >"$_pnpm_comp"
+      source "$_pnpm_comp"
+    fi
 
-  # kubectl
-  if command -v kubectl >/dev/null 2>&1; then
-    local _kubectl_comp="$cache_dir/_kubectl"
-    [[ -f "$_kubectl_comp" ]] || kubectl completion zsh >"$_kubectl_comp"
-    source "$_kubectl_comp"
-    compdef k=kubectl
-  fi
-}
+    # kubectl
+    if command -v kubectl >/dev/null 2>&1; then
+      local _kubectl_comp="$cache_dir/_kubectl"
+      [[ -f "$_kubectl_comp" ]] || kubectl completion zsh >"$_kubectl_comp"
+      source "$_kubectl_comp"
+      compdef k=kubectl
+    fi
+  }
 
-zinit wait"1" lucid light-mode for \
-  atload"_zinit_setup_completions" \
-  zdharma-continuum/null
+  zinit wait"1" lucid light-mode for \
+    atload"_zinit_setup_completions" \
+    zdharma-continuum/null
+fi
 
 unset _zsh_cache _completions_cache
