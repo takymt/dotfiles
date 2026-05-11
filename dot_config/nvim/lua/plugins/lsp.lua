@@ -31,6 +31,7 @@ return {
           "gopls",
           "rust_analyzer",
           "pyright",
+          "clangd",
         },
         automatic_installation = true,
       })
@@ -99,8 +100,13 @@ return {
         capabilities = capabilities,
       }
 
+      -- C/C++
+      vim.lsp.config.clangd = {
+        capabilities = capabilities,
+      }
+
       -- Enable all configured servers
-      vim.lsp.enable({ "lua_ls", "ts_ls", "gopls", "rust_analyzer", "pyright" })
+      vim.lsp.enable({ "lua_ls", "ts_ls", "gopls", "rust_analyzer", "pyright", "clangd" })
     end,
   },
 
@@ -121,10 +127,13 @@ return {
     opts = function()
       local js_formatters = { "oxfmt", "biome", "prettier", stop_after_first = true }
       local config_formatters = { "dprint", "prettier", stop_after_first = true }
+      local c_formatters = { "clang_format" }
 
       return {
         formatters_by_ft = {
           lua = { "stylua" },
+          c = c_formatters,
+          cpp = c_formatters,
           javascript = js_formatters,
           typescript = js_formatters,
           javascriptreact = js_formatters,

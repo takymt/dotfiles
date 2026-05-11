@@ -3,6 +3,7 @@
   "packages": [
     "go@1.26",
     "nodejs@26",
+    "clang-tools@latest",
     "neovim@latest",
     "biome@latest",
     "dprint@latest",
