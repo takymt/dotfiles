@@ -1,7 +1,3 @@
-if vim.env.NO_COMPLETION == "1" then
-  return {}
-end
-
 return {
   -- LSP Configuration
   {
