@@ -5,4 +5,7 @@
 # Local directories
 local/
 .vscode
+
+# nvim
 .nvimlog
+nvim.log

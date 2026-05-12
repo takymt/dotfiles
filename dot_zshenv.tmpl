@@ -35,6 +35,10 @@ export MANPATH="{{ .homebrew_prefix }}/share/man:$MANPATH"
 export INFOPATH="{{ .homebrew_prefix }}/share/info:$INFOPATH"
 export HOMEBREW_NO_ANALYTICS=1
 export HOMEBREW_NO_AUTO_UPDATE=1
+
+# Some native build tools pass this directly to clang. Keep it non-empty so
+# tree-sitter parser builds do not produce invalid -mmacosx-version-min= flags.
+export MACOSX_DEPLOYMENT_TARGET="${MACOSX_DEPLOYMENT_TARGET:-14.0}"
 {{- end }}
 
 # =============================================================================
