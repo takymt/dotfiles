@@ -20,7 +20,7 @@ return {
   -- Fuzzy finder
   {
     "nvim-telescope/telescope.nvim",
-    tag = "v0.2.1",
+    tag = "v0.2.2",
     dependencies = { "nvim-lua/plenary.nvim" },
     keys = {
       { "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "Find files" },
