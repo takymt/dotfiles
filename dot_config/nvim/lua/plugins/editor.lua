@@ -54,8 +54,9 @@ return {
       {
         "<leader>gg",
         function()
+          local lazygit_cmd = vim.fn.executable("direnv") == 1 and "direnv exec . lazygit" or "lazygit"
           vim.cmd("tabnew")
-          vim.cmd("terminal lazygit")
+          vim.cmd("terminal " .. lazygit_cmd)
           vim.cmd("startinsert")
         end,
         desc = "Lazygit",

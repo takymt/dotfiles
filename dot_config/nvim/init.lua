@@ -66,6 +66,10 @@ keymap("t", "<C-j>", "<C-\\><C-n><C-w>j", { desc = "Move to lower window" })
 keymap("t", "<C-k>", "<C-\\><C-n><C-w>k", { desc = "Move to upper window" })
 keymap("t", "<C-l>", "<C-\\><C-n><C-w>l", { desc = "Move to right window" })
 
+-- Insert mode line navigation
+keymap("i", "<C-a>", "<Home>", { desc = "Move to start of line" })
+keymap("i", "<C-e>", "<End>", { desc = "Move to end of line" })
+
 -- Resize windows
 keymap("n", "<C-Up>", ":resize +2<CR>", { desc = "Increase window height" })
 keymap("n", "<C-Down>", ":resize -2<CR>", { desc = "Decrease window height" })

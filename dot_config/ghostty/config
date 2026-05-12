@@ -57,6 +57,8 @@ keybind = super+shift+left_bracket=previous_tab
 keybind = super+shift+backslash=next_tab
 keybind = super+left_bracket=goto_split:previous
 keybind = super+backslash=goto_split:next
+# For MacOS
+keybind = option+¥=text:\\
 
 # Tokyo Night theme
 background = 1a1b26
