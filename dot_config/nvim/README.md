@@ -4,12 +4,12 @@
 
 ## File Navigation
 
-| Key          | Action               |
-| ------------ | -------------------- |
-| `<leader>e`  | Toggle file explorer |
-| `<leader>ff` | Find files           |
-| `<leader>fg` | Live grep search     |
-| `<leader>fb` | List buffers         |
+| Key                              | Action               |
+| -------------------------------- | -------------------- |
+| `<leader>e`                      | Toggle file explorer |
+| `<leader>ff`                     | Find files           |
+| `<leader>fg`                     | Live grep search     |
+| `<leader>fb` / `<leader><space>` | List buffers         |
 
 ## Window & Buffer
 
