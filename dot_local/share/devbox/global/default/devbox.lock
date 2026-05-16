@@ -633,6 +633,54 @@
         }
       }
     },
+    "gdb@latest": {
+      "last_modified": "2026-04-23T13:07:47Z",
+      "resolved": "github:NixOS/nixpkgs/01fbdeef22b76df85ea168fbfe1bfd9e63681b30#gdb",
+      "source": "devbox-search",
+      "version": "17.1",
+      "systems": {
+        "aarch64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/i6csm5r00mkk4pn5czy42yc1l4ixd2g5-gdb-17.1",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/i6csm5r00mkk4pn5czy42yc1l4ixd2g5-gdb-17.1"
+        },
+        "aarch64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/avwxxcvxnaikf80hk01q3jz1hbxpch84-gdb-17.1",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/avwxxcvxnaikf80hk01q3jz1hbxpch84-gdb-17.1"
+        },
+        "x86_64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/ydx6bahnl9x543r4lp1skilq47maaqsh-gdb-17.1",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/ydx6bahnl9x543r4lp1skilq47maaqsh-gdb-17.1"
+        },
+        "x86_64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/q0blg6512mzczxmjk40whhfc57p5p545-gdb-17.1",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/q0blg6512mzczxmjk40whhfc57p5p545-gdb-17.1"
+        }
+      }
+    },
     "ghq@latest": {
       "last_modified": "2026-04-23T13:07:47Z",
       "resolved": "github:NixOS/nixpkgs/01fbdeef22b76df85ea168fbfe1bfd9e63681b30#ghq",
@@ -754,8 +802,8 @@
       }
     },
     "github:NixOS/nixpkgs/nixpkgs-unstable": {
-      "last_modified": "2026-05-11T00:16:55Z",
-      "resolved": "github:NixOS/nixpkgs/c6e5ca3c836a5f4dd9af9f2c1fc1c38f0fac988a?lastModified=1778458615"
+      "last_modified": "2026-05-14T21:33:07Z",
+      "resolved": "github:NixOS/nixpkgs/8a1b0127302ea51e05bf4ea5a291743fac442406?lastModified=1778794387"
     },
     "gitleaks@latest": {
       "last_modified": "2026-04-23T13:07:47Z",

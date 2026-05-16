@@ -40,7 +40,8 @@
     "gitleaks@latest",
     "glow@latest",
     "tree-sitter@latest",
-    "uv@latest"
+    "uv@latest",
+    "gdb@latest"
   ],
   "shell": {
     "init_hook": []

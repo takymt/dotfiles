@@ -53,9 +53,9 @@ keybind = super+minus=decrease_font_size:1
 keybind = super+zero=reset_font_size
 keybind = global:super+shift+space=toggle_visibility
 # For JIS layout
-keybind = super+shift+left_bracket=previous_tab
+keybind = super+shift+right_bracket=previous_tab
 keybind = super+shift+backslash=next_tab
-keybind = super+left_bracket=goto_split:previous
+keybind = super+right_bracket=goto_split:previous
 keybind = super+backslash=goto_split:next
 # For MacOS
 keybind = option+¥=text:\\
