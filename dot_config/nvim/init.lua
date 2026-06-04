@@ -61,14 +61,11 @@ keymap("n", "<C-j>", "<C-w>j", { desc = "Move to lower window" })
 keymap("n", "<C-k>", "<C-w>k", { desc = "Move to upper window" })
 keymap("n", "<C-l>", "<C-w>l", { desc = "Move to right window" })
 keymap("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
-keymap("t", "<C-h>", "<C-\\><C-n><C-w>h", { desc = "Move to left window" })
-keymap("t", "<C-j>", "<C-\\><C-n><C-w>j", { desc = "Move to lower window" })
-keymap("t", "<C-k>", "<C-\\><C-n><C-w>k", { desc = "Move to upper window" })
-keymap("t", "<C-l>", "<C-\\><C-n><C-w>l", { desc = "Move to right window" })
 
 -- Insert mode line navigation
 keymap("i", "<C-a>", "<Home>", { desc = "Move to start of line" })
 keymap("i", "<C-e>", "<End>", { desc = "Move to end of line" })
+keymap("i", "<C-k>", "<C-o>D", { desc = "Delete to end of line" })
 
 -- Resize windows
 keymap("n", "<C-Up>", ":resize +2<CR>", { desc = "Increase window height" })
@@ -84,7 +81,8 @@ keymap("n", "<leader>bd", ":bdelete<CR>", { desc = "Delete buffer" })
 -- Clear search highlight
 keymap("n", "<Esc>", ":nohlsearch<CR>", { desc = "Clear search highlight" })
 
--- Better indenting (stay in visual mode)
+-- Better indenting
+keymap("i", "<S-Tab>", "<C-d>", { desc = "Indent left" })
 keymap("v", "<", "<gv", { desc = "Indent left" })
 keymap("v", ">", ">gv", { desc = "Indent right" })
 
@@ -97,6 +95,9 @@ keymap("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to previous diagnostic"
 keymap("n", "]d", vim.diagnostic.goto_next, { desc = "Go to next diagnostic" })
 keymap("n", "<leader>d", vim.diagnostic.open_float, { desc = "Open diagnostic float" })
 keymap("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic list" })
+
+-- Misc
+keymap("i", "jj", "<Esc>")
 
 -- =============================================================================
 -- Bootstrap lazy.nvim
