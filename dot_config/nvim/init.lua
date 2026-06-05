@@ -60,6 +60,10 @@ keymap("n", "<C-h>", "<C-w>h", { desc = "Move to left window" })
 keymap("n", "<C-j>", "<C-w>j", { desc = "Move to lower window" })
 keymap("n", "<C-k>", "<C-w>k", { desc = "Move to upper window" })
 keymap("n", "<C-l>", "<C-w>l", { desc = "Move to right window" })
+keymap("t", "<A-h>", "<C-\\><C-n><C-w>h", { desc = "Move to left window" })
+keymap("t", "<A-j>", "<C-\\><C-n><C-w>j", { desc = "Move to lower window" })
+keymap("t", "<A-k>", "<C-\\><C-n><C-w>k", { desc = "Move to upper window" })
+keymap("t", "<A-l>", "<C-\\><C-n><C-w>l", { desc = "Move to right window" })
 keymap("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
 
 -- Insert mode line navigation
