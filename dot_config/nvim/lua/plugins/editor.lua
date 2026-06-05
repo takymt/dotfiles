@@ -61,6 +61,55 @@ return {
         end,
         desc = "Lazygit",
       },
+      {
+        "<leader>gd",
+        function()
+          require("gitsigns").diffthis()
+        end,
+        desc = "Git diff this",
+      },
+      {
+        "<leader>hp",
+        function()
+          require("gitsigns").preview_hunk()
+        end,
+        desc = "Preview hunk",
+      },
+      {
+        "<leader>hs",
+        function()
+          require("gitsigns").stage_hunk()
+        end,
+        desc = "Stage hunk",
+      },
+      {
+        "<leader>hr",
+        function()
+          require("gitsigns").reset_hunk()
+        end,
+        desc = "Reset hunk",
+      },
+      {
+        "<leader>hu",
+        function()
+          require("gitsigns").undo_stage_hunk()
+        end,
+        desc = "Undo stage hunk",
+      },
+      {
+        "<leader>hb",
+        function()
+          require("gitsigns").blame_line({ full = true })
+        end,
+        desc = "Blame line",
+      },
+      {
+        "<leader>hd",
+        function()
+          require("gitsigns").diffthis()
+        end,
+        desc = "Diff this",
+      },
     },
     opts = {
       on_attach = function(bufnr)
