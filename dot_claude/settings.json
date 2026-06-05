@@ -1,28 +1,6 @@
 {
   "model": "opusplan",
   "hooks": {
-    "Notification": [
-      {
-        "matcher": "permission_prompt",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "hooks/notify.sh 'Claude Code' 'Permission required'",
-            "async": true
-          }
-        ]
-      }
-    ],
-    "Stop": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "hooks/notify.sh 'Claude Code' 'Task completed'"
-          }
-        ]
-      }
-    ],
     "PostToolUse": [
       {
         "matcher": "Write",
