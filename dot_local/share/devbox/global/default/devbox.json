@@ -13,6 +13,7 @@
     "gofumpt@latest",
     "goimports@latest",
     "git@latest",
+    "gh@latest",
     "ghq@latest",
     "fzf@latest",
     "ripgrep@latest",
