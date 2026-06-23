@@ -36,11 +36,16 @@ return {
               fallback()
             end
           end, { "i", "s" }),
-          -- When the menu is open, <CR> only dismisses it (no newline, no
-          -- auto-confirm of the first item); otherwise it inserts a newline.
+          -- <CR>: confirm an explicitly selected item; with the menu open but
+          -- nothing selected, just dismiss it (no newline, no auto-confirm of
+          -- the first item); otherwise insert a newline.
           ["<CR>"] = cmp.mapping(function(fallback)
             if cmp.visible() then
-              cmp.abort()
+              if cmp.get_selected_entry() then
+                cmp.confirm({ select = false })
+              else
+                cmp.abort()
+              end
             else
               fallback()
             end
