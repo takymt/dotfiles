@@ -51,6 +51,18 @@ vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
 -- =============================================================================
+-- Autocommands
+-- =============================================================================
+-- Soft-wrap prose filetypes at word boundaries (global default keeps wrap off)
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = { "markdown", "text", "gitcommit" },
+  callback = function()
+    vim.opt_local.wrap = true
+    vim.opt_local.linebreak = true
+  end,
+})
+
+-- =============================================================================
 -- Keymaps
 -- =============================================================================
 local keymap = vim.keymap.set
