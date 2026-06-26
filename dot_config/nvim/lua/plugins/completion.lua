@@ -18,7 +18,6 @@ return {
         mapping = cmp.mapping.preset.insert({
           ["<C-j>"] = cmp.mapping.select_next_item(),
           ["<C-n>"] = cmp.mapping.select_next_item(),
-          ["<C-k>"] = cmp.mapping.select_prev_item(),
           ["<C-p>"] = cmp.mapping.select_prev_item(),
           -- Select candidates with <Tab>/<S-Tab> only while the menu is open;
           -- otherwise fall back to the default (indent, etc.).
