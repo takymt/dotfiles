@@ -18,9 +18,42 @@ return {
         mapping = cmp.mapping.preset.insert({
           ["<C-j>"] = cmp.mapping.select_next_item(),
           ["<C-n>"] = cmp.mapping.select_next_item(),
-          ["<C-k>"] = cmp.mapping.select_prev_item(),
           ["<C-p>"] = cmp.mapping.select_prev_item(),
-          ["<CR>"] = cmp.mapping.confirm({ select = false }),
+          -- Move to end of line without closing the menu; overrides the preset's
+          -- default <C-e> = abort binding.
+          ["<C-e>"] = cmp.mapping(function()
+            vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<End>", true, false, true), "n", false)
+          end, { "i", "s" }),
+          -- Select candidates with <Tab>/<S-Tab> only while the menu is open;
+          -- otherwise fall back to the default (indent, etc.).
+          ["<Tab>"] = cmp.mapping(function(fallback)
+            if cmp.visible() then
+              cmp.select_next_item()
+            else
+              fallback()
+            end
+          end, { "i", "s" }),
+          ["<S-Tab>"] = cmp.mapping(function(fallback)
+            if cmp.visible() then
+              cmp.select_prev_item()
+            else
+              fallback()
+            end
+          end, { "i", "s" }),
+          -- <CR>: confirm an explicitly selected item; with the menu open but
+          -- nothing selected, just dismiss it (no newline, no auto-confirm of
+          -- the first item); otherwise insert a newline.
+          ["<CR>"] = cmp.mapping(function(fallback)
+            if cmp.visible() then
+              if cmp.get_selected_entry() then
+                cmp.confirm({ select = false })
+              else
+                cmp.abort()
+              end
+            else
+              fallback()
+            end
+          end, { "i", "s" }),
         }),
         sources = cmp.config.sources({
           { name = "nvim_lsp" },

@@ -51,6 +51,18 @@ vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
 -- =============================================================================
+-- Autocommands
+-- =============================================================================
+-- Soft-wrap prose filetypes at word boundaries (global default keeps wrap off)
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = { "markdown", "text", "gitcommit" },
+  callback = function()
+    vim.opt_local.wrap = true
+    vim.opt_local.linebreak = true
+  end,
+})
+
+-- =============================================================================
 -- Keymaps
 -- =============================================================================
 local keymap = vim.keymap.set
@@ -69,7 +81,16 @@ keymap("t", "<C-g>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
 -- Insert mode line navigation
 keymap("i", "<C-a>", "<Home>", { desc = "Move to start of line" })
 keymap("i", "<C-e>", "<End>", { desc = "Move to end of line" })
-keymap("i", "<C-k>", "<C-o>D", { desc = "Delete to end of line" })
+-- Emacs-style kill-line: delete to end of line, or join the next line up
+-- (removing the newline) when already at the end of the line.
+keymap("i", "<C-k>", function()
+  if vim.fn.col(".") < vim.fn.col("$") then
+    return "<C-o>D"
+  elseif vim.fn.line(".") < vim.fn.line("$") then
+    return "<C-o>gJ"
+  end
+  return ""
+end, { expr = true, desc = "Kill to end of line (join next line if at end)" })
 
 -- Resize windows
 keymap("n", "<C-Up>", ":resize +2<CR>", { desc = "Increase window height" })
