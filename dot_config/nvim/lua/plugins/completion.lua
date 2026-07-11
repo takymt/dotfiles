@@ -19,6 +19,11 @@ return {
           ["<C-j>"] = cmp.mapping.select_next_item(),
           ["<C-n>"] = cmp.mapping.select_next_item(),
           ["<C-p>"] = cmp.mapping.select_prev_item(),
+          -- Move to end of line without closing the menu; overrides the preset's
+          -- default <C-e> = abort binding.
+          ["<C-e>"] = cmp.mapping(function()
+            vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<End>", true, false, true), "n", false)
+          end, { "i", "s" }),
           -- Select candidates with <Tab>/<S-Tab> only while the menu is open;
           -- otherwise fall back to the default (indent, etc.).
           ["<Tab>"] = cmp.mapping(function(fallback)
