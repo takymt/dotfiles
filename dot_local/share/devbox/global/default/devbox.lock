@@ -353,6 +353,54 @@
         }
       }
     },
+    "devcontainer@latest": {
+      "last_modified": "2026-08-27T07:16:00Z",
+      "resolved": "github:NixOS/nixpkgs/c27cdad491a991b11ed731760aa2ef8db0cb0410#devcontainer",
+      "source": "devbox-search",
+      "version": "0.87.0",
+      "systems": {
+        "aarch64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/mbnll5inny14my5jkvyajgpy6lhwk4gi-devcontainer-0.87.0",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/mbnll5inny14my5jkvyajgpy6lhwk4gi-devcontainer-0.87.0"
+        },
+        "aarch64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/1xza918p2blabwdcs86c3v1rcmkvvzig-devcontainer-0.87.0",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/1xza918p2blabwdcs86c3v1rcmkvvzig-devcontainer-0.87.0"
+        },
+        "x86_64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/15khfl0s6mjq90ajhhp2lip1klmxk0mc-devcontainer-0.87.0",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/15khfl0s6mjq90ajhhp2lip1klmxk0mc-devcontainer-0.87.0"
+        },
+        "x86_64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/2srsdzfg18sp2jvymxgwwh3kmvy47ynb-devcontainer-0.87.0",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/2srsdzfg18sp2jvymxgwwh3kmvy47ynb-devcontainer-0.87.0"
+        }
+      }
+    },
     "direnv@latest": {
       "last_modified": "2026-05-07T03:23:16Z",
       "resolved": "github:NixOS/nixpkgs/68a8af93ff4297686cb68880845e61e5e2e41d92#direnv",
@@ -1700,7 +1748,7 @@
     },
     "nodejs@24": {
       "last_modified": "2025-12-27T12:56:01Z",
-      "plugin_version": "0.0.2",
+      "plugin_version": "0.0.4",
       "resolved": "github:NixOS/nixpkgs/3edc4a30ed3903fdf6f90c837f961fa6b49582d1#nodejs_24",
       "source": "devbox-search",
       "version": "24.12.0",

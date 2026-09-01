@@ -38,6 +38,7 @@
     "mise@latest",
     "pnpm@latest",
     "kubectl@latest",
+    "devcontainer@latest",
     "gitleaks@latest",
     "glow@latest",
     "tree-sitter@latest",
