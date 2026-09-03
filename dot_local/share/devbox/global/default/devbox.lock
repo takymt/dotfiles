@@ -1827,6 +1827,44 @@
         }
       }
     },
+    "pinact@latest": {
+      "last_modified": "2026-08-27T07:16:00Z",
+      "resolved": "github:NixOS/nixpkgs/c27cdad491a991b11ed731760aa2ef8db0cb0410#pinact",
+      "source": "devbox-search",
+      "version": "4.1.1",
+      "systems": {
+        "aarch64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/f04sv5yjc790wp1b20y92agjj0v4wzc5-pinact-4.1.1",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/f04sv5yjc790wp1b20y92agjj0v4wzc5-pinact-4.1.1"
+        },
+        "aarch64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/vwkjs07znkl0k17w2yh86n0wasi4048m-pinact-4.1.1",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/vwkjs07znkl0k17w2yh86n0wasi4048m-pinact-4.1.1"
+        },
+        "x86_64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/9yr10b99nbd20yygjm4jpcr58arknx4q-pinact-4.1.1",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/9yr10b99nbd20yygjm4jpcr58arknx4q-pinact-4.1.1"
+        }
+      }
+    },
     "pnpm@latest": {
       "last_modified": "2026-04-27T06:11:55Z",
       "resolved": "github:NixOS/nixpkgs/6368eda62c9775c38ef7f714b2555a741c20c72d#pnpm",
