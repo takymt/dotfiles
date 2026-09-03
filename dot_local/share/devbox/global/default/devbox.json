@@ -43,7 +43,8 @@
     "glow@latest",
     "tree-sitter@latest",
     "uv@latest",
-    "gdb@latest"
+    "gdb@latest",
+    "pinact@latest"
   ],
   "shell": {
     "init_hook": []
