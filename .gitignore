@@ -5,6 +5,7 @@
 # Local directories
 local/
 .vscode
+dot_local/share/devbox/global/default/.devbox/
 
 # nvim
 .nvimlog

@@ -14,9 +14,18 @@ return {
         "yaml",
         "markdown",
         "markdown_inline",
+        "hcl",
         "go",
         "rust",
         "python",
+      })
+
+      -- use hcl as sub for alloy
+      vim.treesitter.language.register("hcl", "alloy")
+      vim.filetype.add({
+        extension = {
+          alloy = "alloy",
+        },
       })
 
       -- Enable treesitter highlighting on FileType
