@@ -1,8 +1,8 @@
 {
   "$schema": "https://raw.githubusercontent.com/jetify-com/devbox/main/.schema/devbox.schema.json",
   "packages": [
-    "go@1.26",
-    "nodejs@24",
+    "go@latest",
+    "nodejs@latest",
     "clang-tools@latest",
     "neovim@latest",
     "biome@latest",
@@ -36,7 +36,6 @@
     "atuin@latest",
     "keychain@latest",
     "mise@latest",
-    "pnpm@latest",
     "kubectl@latest",
     "devcontainer@latest",
     "gitleaks@latest",
@@ -44,9 +43,13 @@
     "tree-sitter@latest",
     "uv@latest",
     "gdb@latest",
-    "pinact@latest"
+    "pinact@latest",
+    "corepack@latest"
   ],
   "shell": {
     "init_hook": []
+  },
+  "env": {
+    "DEVBOX_COREPACK_ENABLED": "true"
   }
 }
