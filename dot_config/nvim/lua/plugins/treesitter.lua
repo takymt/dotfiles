@@ -1,5 +1,10 @@
 return {
   {
+    "runoshun/vim-alloy",
+    name = "vim-alloy6",
+    ft = "alloy",
+  },
+  {
     "nvim-treesitter/nvim-treesitter",
     lazy = false, -- treesitter does not support lazy-loading
     build = ":TSUpdate",
@@ -14,17 +19,14 @@ return {
         "yaml",
         "markdown",
         "markdown_inline",
-        "hcl",
         "go",
         "rust",
         "python",
       })
 
-      -- use hcl as sub for alloy
-      vim.treesitter.language.register("hcl", "alloy")
       vim.filetype.add({
         extension = {
-          alloy = "alloy",
+          als = "alloy",
         },
       })
 
