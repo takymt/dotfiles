@@ -11,6 +11,7 @@ alias vi='nvim'
 alias vim='nvim'
 alias lg='lazygit'
 alias k='kubectl'
+alias alloy='alloy6'
 
 # Git shortcuts (with completion support)
 alias g='git'

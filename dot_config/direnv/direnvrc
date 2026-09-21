@@ -3,7 +3,27 @@
 # direnv standard library extensions
 # =============================================================================
 
-source $HOME/.nix-profile/share/nix-direnv/direnvrc
+# nix-direnv may be installed by Devbox or a regular Nix profile. Resolve it
+# from the active data paths instead of assuming ~/.nix-profile.
+_nix_direnv_data_dirs=(
+  "${XDG_DATA_HOME:-$HOME/.local/share}/devbox/global/default/.devbox/nix/profile/default/share"
+  "$HOME/.nix-profile/share"
+)
+
+if [[ -n "${XDG_DATA_DIRS:-}" ]]; then
+  IFS=: read -r -a _nix_direnv_xdg_dirs <<<"$XDG_DATA_DIRS"
+  _nix_direnv_data_dirs+=("${_nix_direnv_xdg_dirs[@]}")
+fi
+
+for _nix_direnv_data_dir in "${_nix_direnv_data_dirs[@]}"; do
+  _nix_direnvrc="${_nix_direnv_data_dir}/nix-direnv/direnvrc"
+  if [[ -f "$_nix_direnvrc" ]]; then
+    source "$_nix_direnvrc"
+    break
+  fi
+done
+
+unset _nix_direnv_data_dirs _nix_direnv_xdg_dirs _nix_direnv_data_dir _nix_direnvrc
 
 # dotenv_if_exists: Load .env file if it exists
 # Usage in .envrc: dotenv_if_exists

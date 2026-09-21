@@ -101,8 +101,19 @@ return {
         capabilities = capabilities,
       }
 
+      -- Alloy 6
+      vim.lsp.config.alloy6 = {
+        capabilities = capabilities,
+        cmd = { "alloy6", "lsp" },
+        filetypes = { "alloy" },
+        root_markers = { ".git" },
+        get_language_id = function()
+          return "alloy"
+        end,
+      }
+
       -- Enable all configured servers
-      vim.lsp.enable({ "lua_ls", "ts_ls", "gopls", "rust_analyzer", "pyright", "clangd" })
+      vim.lsp.enable({ "lua_ls", "ts_ls", "gopls", "rust_analyzer", "pyright", "clangd", "alloy6" })
     end,
   },
 

@@ -79,15 +79,6 @@ fi
 {{- end }}
 
 # =============================================================================
-# pnpm setup
-# =============================================================================
-export PNPM_HOME="$HOME/.local/share/pnpm"
-case ":$PATH:" in
-  *":$PNPM_HOME:"*) ;;
-  *) export PATH="$PNPM_HOME:$PATH" ;;
-esac
-
-# =============================================================================
 # vite plus setup
 # =============================================================================
 export VITE_PLUS_HOME="${HOME}/.vite-plus"
@@ -103,6 +94,13 @@ export VITE_PLUS_HOME="${HOME}/.vite-plus"
 
 # Machine-specific shell configuration
 [[ -f "$HOME/.zshrc.local" ]] && source "$HOME/.zshrc.local"
+
+# =============================================================================
+# Devbox global
+# =============================================================================
+if command -v devbox &>/dev/null; then
+  eval "$(devbox global shellenv)"
+fi
 
 # =============================================================================
 # Powerlevel10k configuration
