@@ -105,19 +105,28 @@ zinit wait"1" lucid light-mode for \
   atload"_zinit_setup_fzf" \
   zdharma-continuum/null
 
-# direnv (turbo)
+# direnv
+# Load synchronously so directory changes are handled from the first prompt.
 _zinit_setup_direnv() {
   if command -v direnv >/dev/null 2>&1; then
     local _direnv_cache="${XDG_CACHE_HOME}/zsh/init/direnv.zsh"
-    [[ -f "$_direnv_cache" ]] || direnv hook zsh >"$_direnv_cache"
+    local _direnv_cache_tmp="${_direnv_cache}.tmp.$$"
+
+    if [[ ! -s "$_direnv_cache" ]]; then
+      if direnv hook zsh >"$_direnv_cache_tmp" && [[ -s "$_direnv_cache_tmp" ]]; then
+        command mv -f "$_direnv_cache_tmp" "$_direnv_cache"
+      else
+        command rm -f "$_direnv_cache_tmp"
+        return 1
+      fi
+    fi
+
     source "$_direnv_cache"
   fi
 }
 
-
-zinit wait"2" lucid light-mode for \
-  atload"_zinit_setup_direnv" \
-  zdharma-continuum/null
+_zinit_setup_direnv
+unfunction _zinit_setup_direnv
 
 # =============================================================================
 # Tool completions (cached, turbo mode)
