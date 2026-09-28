@@ -44,7 +44,9 @@
     "uv@latest",
     "gdb@latest",
     "pinact@latest",
-    "corepack@latest"
+    "corepack@latest",
+    "rustup@latest",
+    "devenv@latest"
   ],
   "shell": {
     "init_hook": []
