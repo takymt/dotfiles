@@ -395,6 +395,44 @@
         }
       }
     },
+    "devenv@latest": {
+      "last_modified": "2026-09-27T03:42:02Z",
+      "resolved": "github:NixOS/nixpkgs/8d5d270900d3fc75655ea2d9d248b234f6631439#devenv",
+      "source": "devbox-search",
+      "version": "2.4.0",
+      "systems": {
+        "aarch64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/c6s3wsdns4l6z64dfijbfhd9i04aryjb-devenv-2.4.0",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/c6s3wsdns4l6z64dfijbfhd9i04aryjb-devenv-2.4.0"
+        },
+        "aarch64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/gcqp4qfjgg834k78nkya9ih10n49xwis-devenv-2.4.0",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/gcqp4qfjgg834k78nkya9ih10n49xwis-devenv-2.4.0"
+        },
+        "x86_64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/m4im74syfyqkl2fqz8gp6x3gp6raylk1-devenv-2.4.0",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/m4im74syfyqkl2fqz8gp6x3gp6raylk1-devenv-2.4.0"
+        }
+      }
+    },
     "direnv@latest": {
       "last_modified": "2026-08-27T07:16:00Z",
       "resolved": "github:NixOS/nixpkgs/c27cdad491a991b11ed731760aa2ef8db0cb0410#direnv",
